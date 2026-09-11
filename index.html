@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d9488">
+  <meta name="description" content="تەندروستی و شیکاری کالۆری - ژمێرەری کالۆری، تۆمارکەری خواردن و هەنگاو">
+  <title>تەندروستی و شیکاری کالۆری</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="hero-icon">🥗</div>
+      <div>
+        <h1>تەندروستی و شیکاری کالۆری</h1>
+        <p>کالۆری، خواردن و هەنگاوەکانت لە یەک شوێن</p>
+      </div>
+    </header>
+
+    <section id="homePage" class="page">
+      <div class="card steps-card">
+        <div class="card-title blue">🚶‍♂️ ژمێرەری هەنگاوەکانی ئەمڕۆ</div>
+        <div id="stepDate" class="muted center">ئەمڕۆ</div>
+        <div id="stepCount" class="big-number">0</div>
+        <div id="stepCalories" class="muted center">کالۆری سوتێنراو: 0.0 kcal</div>
+        <div class="two-buttons">
+          <button id="prevStep" class="secondary">⬅️ ڕۆژی پێشوو</button>
+          <button id="nextStep" class="secondary">ڕۆژی دواتر ➡️</button>
+        </div>
+        <div class="step-controls">
+          <input id="manualSteps" type="number" min="1" inputmode="numeric" placeholder="ژمارەی هەنگاو زیاد بکە">
+          <button id="addSteps" class="primary">زیادکردن</button>
+        </div>
+        <small class="hint">لە Website ـدا ژمارەکردنی هەنگاو بە سنسۆری مۆبایل هەموو براوزەرێک پشتگیری ناکات؛ بۆیە زیادکردنی دەستی هەنگاو هەیە.</small>
+      </div>
+
+      <div id="profileCard" class="card">
+        <div class="card-title teal">🔥 ژمێرەری کالۆری ڕۆژانە</div>
+        <form id="calorieForm">
+          <label>تەمەن (ساڵ)<input id="age" type="number" min="1" required></label>
+          <label>باڵا (سانتیمەتر)<input id="height" type="number" min="1" required></label>
+          <label>کێش (کیلیۆگرام)<input id="weight" type="number" min="1" step="0.1" required></label>
+          <label>ڕەگەز
+            <select id="gender"><option value="male">نێر</option><option value="female">مێ</option></select>
+          </label>
+          <label>ئاستی جوڵە
+            <select id="activity">
+              <option value="1.2">کەمترین جوڵە (زۆر دانیشتوو)</option>
+              <option value="1.375">جوڵەی کەم (وەرزش 1-3 ڕۆژ لە هەفتەدا)</option>
+              <option value="1.55">جوڵەی ناوەند (وەرزش 3-5 ڕۆژ لە هەفتەدا)</option>
+              <option value="1.725">جوڵەی زۆر (وەرزش 6-7 ڕۆژ لە هەفتەدا)</option>
+            </select>
+          </label>
+          <label>ئامانجی تۆ چییە؟
+            <select id="goal">
+              <option value="275">زیادکردنی کێش (+0.25 کگم / هەفتە)</option>
+              <option value="550">زیادکردنی کێش (+0.50 کگم / هەفتە)</option>
+              <option value="1100">زیادکردنی کێش (+1.00 کگم / هەفتە)</option>
+              <option value="-275">کەمکردنەوەی کێش (-0.25 کگم / هەفتە)</option>
+              <option value="-550">کەمکردنەوەی کێش (-0.50 کگم / هەفتە)</option>
+              <option value="-1100">کەمکردنەوەی کێش (-1.00 کگم / هەفتە)</option>
+              <option value="0" selected>هێشتنەوەی کێش وەک خۆی</option>
+            </select>
+          </label>
+          <button class="primary full" type="submit">خەمڵاندنی کالۆری</button>
+        </form>
+        <div id="calorieResult" class="result">ئەنجام لێرە دەردەکەوێت</div>
+      </div>
+
+      <div id="targetCard" class="card hidden">
+        <div id="targetHeader" class="target">کالۆری پێویستی ڕۆژانەت: 0 kcal</div>
+      </div>
+    </section>
+
+    <section id="foodPage" class="page hidden">
+      <div class="card">
+        <div class="card-title teal">🍽️ تۆمارکەری کالۆری خواردنی ڕۆژانە</div>
+        <div id="foodDate" class="date-title">ئەمڕۆ</div>
+        <input id="foodName" placeholder="ناوی خواردن (بۆ نموونە: قاپێک برنج)">
+        <input id="foodCalories" type="number" min="1" inputmode="numeric" placeholder="بڕی کالۆری (بۆ نموونە: 300)">
+        <button id="addFood" class="primary full">زیادکردنی خواردن بۆ ئەمڕۆ</button>
+        <div id="foodSummary" class="result">کۆی خواردنی خوراو: 0 kcal</div>
+        <div id="foodLog" class="log">هیچ خواردنێک تۆمار نەکراوە.</div>
+        <div class="two-buttons">
+          <button id="prevFood" class="secondary">⬅️ ڕۆژی پێشوو</button>
+          <button id="nextFood" class="secondary">ڕۆژی دواتر ➡️</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title purple">📸 شیکارکردنی خواردن بە AI</div>
+        <div class="image-picker">
+          <label class="picker">
+            <img src="assets/camera.png" alt="">
+            <span>کامێرا</span>
+            <input id="cameraInput" type="file" accept="image/*" capture="environment">
+          </label>
+          <label class="picker">
+            <img src="assets/gallery.png" alt="">
+            <span>گەلەری</span>
+            <input id="galleryInput" type="file" accept="image/*">
+          </label>
+        </div>
+        <img id="foodPreview" class="food-preview" src="assets/default-image.png" alt="وێنەی خواردن">
+        <button id="analyzeFood" class="ai-button">شیکارکردنی وێنەکە</button>
+        <div id="aiResult" class="result">ئەنجامی شیکاری وێنەکە لێرە نیشان دەدرێت</div>
+        <details class="api-note">
+          <summary>AI چۆن کار بکات؟</summary>
+          <p>بۆ پاراستنی API key، لە Website ـی ڕاستەوخۆدا نابێت key ـەکەت لە کۆدەکەدا دابنرێت. ئەم وەشانە UI و upload ـی وێنە ئامادە دەکات؛ بۆ AI ـی ڕاستەقینە پێویستی بە backend/proxy هەیە.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="settingsPage" class="page hidden">
+      <div class="card">
+        <div class="card-title teal">⚙️ ڕێکخستن</div>
+        <label>AI Backend Endpoint
+          <input id="aiEndpointInput" placeholder="/api/analyze-food">
+        </label>
+        <button id="saveEndpoint" class="primary full">خەزنکردنی Endpoint</button>
+        <button id="resetData" class="secondary full" style="margin-top:10px">سڕینەوەی هەموو داتا</button>
+        <div class="result">API key ـەکە لە Website ـی public مەخە. Backend ـەکە دەبێت key ـەکە لە server ـدا بپارێزێت.</div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button data-page="foodPage" id="navFood">🍲<span>خواردن</span></button>
+      <button data-page="homePage" id="navHome" class="active">🏠<span>سەرەتا</span></button>
+      <button id="settingsBtn">⚙️<span>ڕێکخستن</span></button>
+    </nav>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
