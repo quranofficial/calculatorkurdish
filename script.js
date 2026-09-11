@@ -10,6 +10,32 @@ function save(){localStorage.setItem(KEY,JSON.stringify({...state,stepOffset:und
 function dateKey(offset=0){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10)}
 function dateLabel(offset){const k=dateKey(offset);if(offset===0)return k+' (ئەمڕۆ)';if(offset===-1)return k+' (دوێنێ)';return k}
 
+const endpointInput = $('aiEndpointInput');
+const saveEndpointBtn = $('saveEndpoint');
+
+if (endpointInput) {
+  endpointInput.value =
+    localStorage.getItem('AI_ENDPOINT') ||
+    'https://calculatorkurdish-ai.ismahilismahil0.workers.dev/api/analyze-food';
+}
+
+if (saveEndpointBtn) {
+  saveEndpointBtn.onclick = () => {
+    const url = endpointInput.value.trim();
+
+    if (!url) {
+      alert('تکایە Endpoint بنووسە');
+      return;
+    }
+
+    localStorage.setItem('AI_ENDPOINT', url);
+
+    alert('Endpoint بە سەرکەوتوویی خەزن کرا ✅');
+
+    location.reload();
+  };
+}
+
 function loadProfile(){
   const p=state.profile;
   ['age','height','weight'].forEach(k=>{if(p[k]!==undefined)$(k).value=p[k]});
