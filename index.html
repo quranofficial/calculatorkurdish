@@ -119,6 +119,11 @@
           <input id="aiEndpointInput" placeholder="/api/analyze-food">
         </label>
         <button id="saveEndpoint" class="primary full">خەزنکردنی Endpoint</button>
+        <div class="result" style="margin-top:12px">
+          <b>بۆ AI ـی ڕاستەقینە:</b><br>
+          لینکەی Cloudflare Worker ـەکەت لێرە دابنێ، وەک:<br>
+          <code>https://your-worker.workers.dev/api/analyze-food</code>
+        </div>
         <button id="resetData" class="secondary full" style="margin-top:10px">سڕینەوەی هەموو داتا</button>
         <div class="result">API key ـەکە لە Website ـی public مەخە. Backend ـەکە دەبێت key ـەکە لە server ـدا بپارێزێت.</div>
       </div>
@@ -127,7 +132,7 @@
     <nav class="bottom-nav">
       <button data-page="foodPage" id="navFood">🍲<span>خواردن</span></button>
       <button data-page="homePage" id="navHome" class="active">🏠<span>سەرەتا</span></button>
-      <button id="settingsBtn">⚙️<span>ڕێکخستن</span></button>
+      <button data-page="settingsPage" id="settingsBtn">⚙️<span>ڕێکخستن</span></button>
     </nav>
   </main>
   <script src="script.js"></script>

@@ -85,9 +85,15 @@ async function analyzeFoodWithBackend(file){
     $('aiResult').textContent='⚠️ AI بە backend ـەکە پەیوەندی نەکرا.\\nEndpoint: '+AI_ENDPOINT+'\\n\\nئەگەر backend ـت داناوە، endpoint ـەکە لە localStorage ـدا ڕێکبخە.';
   }
 }
-$('analyzeFood').onclick=()=>{
+$('analyzeFood').onclick=async()=>{
   const file=$('cameraInput').files[0] || $('galleryInput').files[0];
-  analyzeFoodWithBackend(file);
+  if(!file){ $('aiResult').textContent='تکایە سەرەتا وێنەی خواردن هەڵبژێرە.'; return; }
+  // First try the configured backend. If it is unavailable, keep the UI usable.
+  try {
+    await analyzeFoodWithBackend(file);
+  } catch(e) {
+    $('aiResult').textContent='وێنەکە هەڵبژێردرا. بۆ ناسینەوەی خواردن بە AI ـی ڕاستەقینە، Backend پێویستە.';
+  }
 };
 
 document.querySelectorAll('.bottom-nav [data-page]').forEach(btn=>btn.onclick=()=>{
