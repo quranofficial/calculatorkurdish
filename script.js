@@ -62,7 +62,8 @@ function setPreview(file){
 }
 $('cameraInput').onchange=e=>setPreview(e.target.files[0]);
 $('galleryInput').onchange=e=>setPreview(e.target.files[0]);
-const AI_ENDPOINT = localStorage.getItem('AI_ENDPOINT') || '/api/analyze-food';
+const AI_ENDPOINT =
+  'https://calculatorkurdish-ai.ismahilismahil0.workers.dev/api/analyze-food';
 
 async function analyzeFoodWithBackend(file){
   if(!file){ $('aiResult').textContent='تکایە سەرەتا وێنەی خواردن هەڵبژێرە.'; return; }
